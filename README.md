@@ -14,3 +14,10 @@
 ### 基礎編１３ [トランザクションログを検索する例](https://dncware-blockchain-plus.github.io/samples-20240322/basic/basic13.html)
 ### 基礎編１４ [delegationによるサブコントラクト呼び出しとDGALによる制限の例](https://dncware-blockchain-plus.github.io/samples-20240322/basic/basic14.html)
 ### 基礎編１５ [トランザクションログをコントラクト内から参照する例](https://dncware-blockchain-plus.github.io/samples-20240322/basic/basic15.html)
+
+# advancedサンプル一覧
+### 応用編１ [トランザクション要求を作成し署名する方法](https://dncware-blockchain-plus.github.io/samples-20240322/advanced/advanced01.html)
+### 応用編２ [マルチシグの例](https://dncware-blockchain-plus.github.io/samples-20240322/advanced/advanced02.html)
+### 応用編３ [ライブラリ化-ドメイン初期化コード利用](https://dncware-blockchain-plus.github.io/samples-20240322/advanced/advanced03.html)
+### 応用編４ [ライブラリ化-サブコントラクト利用](https://dncware-blockchain-plus.github.io/samples-20240322/advanced/advanced04.html)
+### 応用編５ [プロキシ環境下での接続](https://dncware-blockchain-plus.github.io/samples-20240322/advanced/advanced05.html)
