@@ -1,0 +1,16 @@
+{
+    "name": "listNFT",
+    "argtypes": {
+        "nftId": "string",
+        "owner": "string",
+        "start": "number",
+        "end": "number"
+    },
+    "accessible_to": [
+        "admin@default"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": []
+}

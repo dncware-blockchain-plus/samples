@@ -1,0 +1,23 @@
+[
+    {
+        "id": "BC+",
+        "type": "BC+",
+        "chainId": "local.dncware-blockchain.com",
+        "urls": [
+            "http://localhost:8000/"
+        ],
+        "nftSender": "nftSender@nft_transfer_01",
+        "messageEventId": "messageEvent@nft_transfer_01",
+        "domain": "nft_transfer_01"
+    },
+    {
+        "id": "hardhat",
+        "type": "EVM",
+        "chainId": "31337",
+        "urls": [
+            "http://localhost:8545/"
+        ],
+        "nftReceiver": "0x0E75410fBf27A70fF6ebdF9140A3B19d3227CcaF",
+        "nativeCurrency": "HHT"
+    }
+]

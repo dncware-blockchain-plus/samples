@@ -1,6 +1,7 @@
 # 概要説明
 ### 説明書 [サンプルコードについて](https://dncware-blockchain-plus.github.io/samples/docs/samples_overview.pdf)
 ### 説明書 [BC+におけるNFTについて](https://dncware-blockchain-plus.github.io/samples/docs/NFT_overview.pdf)
+### 説明書 [AWS KMSを利用したBC+用のウォレットの実装例](https://dncware-blockchain-plus.github.io/samples/docs/KMS_wallet.pdf)
 
 # basicサンプル一覧
 ### 基礎編１ [ブロックチェーンにアクセスする基本形の例](https://dncware-blockchain-plus.github.io/samples/basic/basic01.html)
@@ -40,6 +41,8 @@
 ### ＮＦＴ参照コード [使用例：各機能の確認](https://dncware-blockchain-plus.github.io/samples/practical/nft100-usage1.html)
 ### ＮＦＴ参照コード [使用例：コントラクトにapproveする例](https://dncware-blockchain-plus.github.io/samples/practical/nft100-usage2.html)
 ### ＮＦＴ参照コード [使用例：mint/burnと転送履歴つきの場合](https://dncware-blockchain-plus.github.io/samples/practical/nft200-usage1.html)
+### ＮＦＴ参照コード [使用例：NFTリスティングの高速化](https://dncware-blockchain-plus.github.io/samples/practical/nft100-usage3.html)
 
 # 設計ガイド一覧
 ### 設計ガイド１ [オンチェーンとオフチェーンの使い分け](https://dncware-blockchain-plus.github.io/samples/docs/design-guide01.pdf)
+### 設計ガイド２ [NFTを利用するアプリケーション](https://dncware-blockchain-plus.github.io/samples/docs/design-guide02.pdf)

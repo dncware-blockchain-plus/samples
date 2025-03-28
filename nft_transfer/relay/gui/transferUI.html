@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>NFT relay</title>
+
+        <script src="../oss/react/react.development.js"></script>
+        <script src="../oss/react/react-dom.development.js"></script>
+        <script src="../oss/react/babel.min.js"></script>
+        <script src="../oss/Web3/web3.min.js"></script>
+
+        <script type="module">
+            import * as dbcpApi from '../sdk/bcplus/dncware-blockchain-browser-api.mjs';
+            window.dbcpApi = dbcpApi;
+        </script>
+
+        <script src="styles.js"></script>
+        <script type="text/babel" src="fileSelector.jsx"></script>
+        <script type="text/babel" src="stringSelector.jsx"></script>
+        <script type="text/babel" src="bcplusWallet.jsx"></script>
+        <script type="text/babel" src="evmWallet.jsx"></script>
+        <script type="text/babel" src="srcSelector.jsx"></script>
+        <script type="text/babel" src="dstSelector.jsx"></script>
+        <script type="text/babel" src="nftSelector.jsx"></script>
+        <script src="srcDstSelCommon.js"></script>
+        <script type="text/babel" src="destinationAddress.jsx"></script>
+        <script type="text/babel" src="transferUI.jsx"></script>
+
+        <script src="../lib/transfer/transferRelay.js"></script>
+        <script src="../lib/transfer/tokenList.js"></script>
+        <script src="../lib/transfer/pendingForReception.js"></script>
+        <script src="../lib/common/fetchUtil.js"></script>
+        <script src="../lib/common/defsUtil.js"></script>
+        <script src="../lib/common/sleep.js"></script>
+        <script src="../lib/common/arrayUtil.js"></script>
+        <script src="../lib/bcplus/messageTransaction.js"></script>
+        <script src="../lib/bcplus/bcplusUtil.js"></script>
+        <script src="../lib/evm/evmUtil.js"></script>
+
+        <link href="transferUI.css" rel="stylesheet"/>
+    </head>
+
+    <body style="margin:0px">
+        <div id="root" style="margin:0px;padding:0px"></div>
+    </body>
+
+</html>

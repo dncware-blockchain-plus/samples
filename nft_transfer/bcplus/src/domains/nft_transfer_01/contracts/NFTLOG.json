@@ -1,0 +1,17 @@
+{
+    "name": "NFTLOG",
+    "description": "A contract for logs for NFT transactions",
+    "argtypes": {
+        "from": "string",
+        "to": "string",
+        "tokenId": "string"
+    },
+    "accessible_to": [
+        "admin@default",
+        "sampleNFT@nft_transfer_01"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": []
+}

@@ -1,0 +1,10 @@
+{
+    "name": "srcDstTable",
+    "description": "",
+    "accessible_to": [
+        "admin@default",
+        "nftSender@nft_transfer_01",
+        "dumpStore@nft_transfer_01"
+    ],
+    "disclosed_to": []
+}

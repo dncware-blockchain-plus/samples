@@ -1,0 +1,11 @@
+import * as api from './dncware-blockchain-nodejs-api.js';
+import { importPublicData_e, signSignature_e } from './kms-wallet-ec.mjs';
+api.pluginExternalWalletModule('aws-kms', { importPublicData_e, signSignature_e });
+var uw = await api.importSigningWallet('es', { external: 'aws-kms', region: 'ap-northeast-1', KeyId: 'alias/testkey2' });
+console.log('address:', uw.address);
+var rpc = new api.RPC('trial.dncware-blockchain.biz');
+rpc.connect('https://trial1.dncware-blockchain.biz');
+rpc.connect('https://trial2.dncware-blockchain.biz');
+rpc.connect('https://trial3.dncware-blockchain.biz');
+var resp = await rpc.call(uw, 'c1query', { type: 'dashboard' });
+console.log(resp);

@@ -1,0 +1,16 @@
+{
+    "name": "sampleNFT",
+    "description": "A sample NFT for BC+",
+    "argtypes": {
+        "func": "string",
+        "args": "any"
+    },
+    "accessible_to": [
+        "admin@default",
+        "nftSender@nft_transfer_01"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": []
+}

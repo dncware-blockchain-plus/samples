@@ -1,0 +1,24 @@
+{
+    "name": "messageEvent",
+    "description": "A contract to record messages as transactions for this contract",
+    "argtypes": {
+        "messageType": "string",
+        "dstChainInfoId": "string",
+        "srcNFTId": "string",
+        "orgTokenId": "string",
+        "orgOwner": "string",
+        "tokenURI": "string",
+        "dstNFTAddr": "string",
+        "dstWalletAddr": "string"
+    },
+    "accessible_to": [
+        "admin@default",
+        "nftSender@nft_transfer_01"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": [
+        "admin@default"
+    ]
+}

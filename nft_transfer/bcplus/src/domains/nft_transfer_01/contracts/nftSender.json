@@ -1,0 +1,17 @@
+{
+    "name": "nftSender",
+    "description": "A contract for NFT sending",
+    "argtypes": {
+        "nftId": "string",
+        "tokenId": "string",
+        "dstChainInfoId": "string",
+        "dstAddress": "string"
+    },
+    "accessible_to": [
+        "admin@default"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": []
+}
