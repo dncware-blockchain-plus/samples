@@ -3,6 +3,11 @@
 ### 説明書 [BC+におけるNFTについて](https://dncware-blockchain-plus.github.io/samples/docs/NFT_overview.pdf)
 ### 説明書 [AWS KMSを利用したBC+用のウォレットの実装例](https://dncware-blockchain-plus.github.io/samples/docs/KMS_wallet.pdf)
 
+# 設計ガイド一覧
+### 設計ガイド１ [オンチェーンとオフチェーンの使い分け](https://dncware-blockchain-plus.github.io/samples/docs/design-guide01.pdf)
+### 設計ガイド２ [NFTを利用するアプリケーション](https://dncware-blockchain-plus.github.io/samples/docs/design-guide02.pdf)
+### 設計ガイド３ [秘密分散ストレージ機能の利用](https://dncware-blockchain-plus.github.io/samples/docs/design-guide03.pdf)
+
 # basicサンプル一覧
 ### 基礎編１ [ブロックチェーンにアクセスする基本形の例](https://dncware-blockchain-plus.github.io/samples/basic/basic01.html)
 ### 基礎編２ [ウォレットを作成し、ブロックチェーンにユーザ登録する例](https://dncware-blockchain-plus.github.io/samples/basic/basic02.html)
@@ -19,6 +24,8 @@
 ### 基礎編１３ [トランザクションログを検索する例](https://dncware-blockchain-plus.github.io/samples/basic/basic13.html)
 ### 基礎編１４ [delegationによるサブコントラクト呼び出しとDGALによる制限の例](https://dncware-blockchain-plus.github.io/samples/basic/basic14.html)
 ### 基礎編１５ [トランザクションログをコントラクト内から参照する例](https://dncware-blockchain-plus.github.io/samples/basic/basic15.html)
+### 基礎編１６ [V3.6新機能:ACLグループ](https://dncware-blockchain-plus.github.io/samples/basic/basic16.html)
+### 基礎編１７ [V3.6新機能:ACLグループの特長](https://dncware-blockchain-plus.github.io/samples/basic/basic17.html)
 
 # advancedサンプル一覧
 ### 応用編１ [トランザクション要求を作成し署名する方法](https://dncware-blockchain-plus.github.io/samples/advanced/advanced01.html)
@@ -29,6 +36,10 @@
 ### 応用編６ [V3.3新機能:freeze機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced06.html)
 ### 応用編７ [V3.3新機能:ACLへのドメインの指定](https://dncware-blockchain-plus.github.io/samples/advanced/advanced07.html)
 ### 応用編８ [V3.3新機能:スマートコントラクトの引数型の拡張](https://dncware-blockchain-plus.github.io/samples/advanced/advanced08.html)
+### 応用編９ [V3.5新機能:ピアの構成情報の取得](https://dncware-blockchain-plus.github.io/samples/advanced/advanced09.html)
+### 応用編１０ [V3.5新機能:SPV(Simplified Payment Verification)機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced10.html)
+### 応用編１１ [V3.6新機能:アクセス権限callable_to(呼び出し許可先リスト）](https://dncware-blockchain-plus.github.io/samples/advanced/advanced11.html)
+
 
 # practicalサンプル一覧
 ### コイン参照コード [インタフェース定義](https://dncware-blockchain-plus.github.io/samples/practical/coin-spec.html)
@@ -42,7 +53,3 @@
 ### ＮＦＴ参照コード [使用例：コントラクトにapproveする例](https://dncware-blockchain-plus.github.io/samples/practical/nft100-usage2.html)
 ### ＮＦＴ参照コード [使用例：mint/burnと転送履歴つきの場合](https://dncware-blockchain-plus.github.io/samples/practical/nft200-usage1.html)
 ### ＮＦＴ参照コード [使用例：NFTリスティングの高速化](https://dncware-blockchain-plus.github.io/samples/practical/nft100-usage3.html)
-
-# 設計ガイド一覧
-### 設計ガイド１ [オンチェーンとオフチェーンの使い分け](https://dncware-blockchain-plus.github.io/samples/docs/design-guide01.pdf)
-### 設計ガイド２ [NFTを利用するアプリケーション](https://dncware-blockchain-plus.github.io/samples/docs/design-guide02.pdf)
