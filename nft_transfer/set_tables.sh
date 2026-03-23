@@ -1,4 +1,4 @@
 #!/bin/sh
 
-(cd bcplus; node tools/set_tables.js)
-(cd evm; node tools/set_tables.js)
+(cd bcplus; node tools/set_tables.mjs)
+(cd hardhat; node tools/set_tables.mjs)

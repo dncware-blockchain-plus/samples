@@ -1,0 +1,20 @@
+{
+    "name": "nftManager",
+    "description": "A contract for NFT management",
+    "argtypes": {
+        "nftId": "string",
+        "func": "string",
+        "args": "any"
+    },
+    "accessible_to": [
+        "u0000",
+        "nftReceiver@nft_transfer_01",
+        "transferConfirmation@nft_transfer_01"
+    ],
+    "callable_to": [
+        "all"
+    ],
+    "disclosed_to": [
+        "all"
+    ]
+}

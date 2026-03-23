@@ -4,10 +4,10 @@
         "nftId": "string",
         "owner": "string",
         "start": "number",
-        "end": "number"
+        "chunkSize": "number"
     },
     "accessible_to": [
-        "admin@default"
+        "all"
     ],
     "callable_to": [
         "all"

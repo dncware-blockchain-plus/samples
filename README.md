@@ -7,6 +7,7 @@
 ### 設計ガイド１ [オンチェーンとオフチェーンの使い分け](https://dncware-blockchain-plus.github.io/samples/docs/design-guide01.pdf)
 ### 設計ガイド２ [NFTを利用するアプリケーション](https://dncware-blockchain-plus.github.io/samples/docs/design-guide02.pdf)
 ### 設計ガイド３ [秘密分散ストレージ機能の利用](https://dncware-blockchain-plus.github.io/samples/docs/design-guide03.pdf)
+### 設計ガイド４ [ブロックチェーンアプリケーションでのウォレットの利用](https://dncware-blockchain-plus.github.io/samples/docs/design-guide04.pdf)
 
 # basicサンプル一覧
 ### 基礎編１ [ブロックチェーンにアクセスする基本形の例](https://dncware-blockchain-plus.github.io/samples/basic/basic01.html)
@@ -24,8 +25,9 @@
 ### 基礎編１３ [トランザクションログを検索する例](https://dncware-blockchain-plus.github.io/samples/basic/basic13.html)
 ### 基礎編１４ [delegationによるサブコントラクト呼び出しとDGALによる制限の例](https://dncware-blockchain-plus.github.io/samples/basic/basic14.html)
 ### 基礎編１５ [トランザクションログをコントラクト内から参照する例](https://dncware-blockchain-plus.github.io/samples/basic/basic15.html)
-### 基礎編１６ [V3.6新機能:ACLグループ](https://dncware-blockchain-plus.github.io/samples/basic/basic16.html)
-### 基礎編１７ [V3.6新機能:ACLグループの特長](https://dncware-blockchain-plus.github.io/samples/basic/basic17.html)
+### 基礎編１６ [ACLグループ](https://dncware-blockchain-plus.github.io/samples/basic/basic16.html)
+### 基礎編１７ [ACLグループの特長](https://dncware-blockchain-plus.github.io/samples/basic/basic17.html)
+### 基礎編１８ [V3.7新機能:コントラクトAPI:isReadMode()](https://dncware-blockchain-plus.github.io/samples/basic/basic18.html)
 
 # advancedサンプル一覧
 ### 応用編１ [トランザクション要求を作成し署名する方法](https://dncware-blockchain-plus.github.io/samples/advanced/advanced01.html)
@@ -33,13 +35,16 @@
 ### 応用編３ [ライブラリ化-ドメイン初期化コード利用](https://dncware-blockchain-plus.github.io/samples/advanced/advanced03.html)
 ### 応用編４ [ライブラリ化-サブコントラクト利用](https://dncware-blockchain-plus.github.io/samples/advanced/advanced04.html)
 ### 応用編５ [プロキシ環境下での接続](https://dncware-blockchain-plus.github.io/samples/advanced/advanced05.html)
-### 応用編６ [V3.3新機能:freeze機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced06.html)
-### 応用編７ [V3.3新機能:ACLへのドメインの指定](https://dncware-blockchain-plus.github.io/samples/advanced/advanced07.html)
-### 応用編８ [V3.3新機能:スマートコントラクトの引数型の拡張](https://dncware-blockchain-plus.github.io/samples/advanced/advanced08.html)
-### 応用編９ [V3.5新機能:ピアの構成情報の取得](https://dncware-blockchain-plus.github.io/samples/advanced/advanced09.html)
-### 応用編１０ [V3.5新機能:SPV(Simplified Payment Verification)機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced10.html)
-### 応用編１１ [V3.6新機能:アクセス権限callable_to(呼び出し許可先リスト）](https://dncware-blockchain-plus.github.io/samples/advanced/advanced11.html)
-
+### 応用編６ [freeze機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced06.html)
+### 応用編７ [ACLへのドメインの指定](https://dncware-blockchain-plus.github.io/samples/advanced/advanced07.html)
+### 応用編８ [スマートコントラクトの引数型の拡張](https://dncware-blockchain-plus.github.io/samples/advanced/advanced08.html)
+### 応用編９ [ピアの構成情報の取得](https://dncware-blockchain-plus.github.io/samples/advanced/advanced09.html)
+### 応用編１０ [SPV(Simplified Payment Verification)機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced10.html)
+### 応用編１１ [アクセス権限callable_to(呼び出し許可先リスト）](https://dncware-blockchain-plus.github.io/samples/advanced/advanced11.html)
+### 応用編１２ [V3.7新機能:ストレージ機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced12.html)
+### 応用編１３ [V3.7新機能:秘密分散機能](https://dncware-blockchain-plus.github.io/samples/advanced/advanced13.html)
+### 応用編１４ [V3.8新機能:代理ウォレット機能によるクロスデバイスログイン](https://dncware-blockchain-plus.github.io/samples/advanced/advanced14.html)
+### 応用編１５ [V3.8新機能:代理ウォレット機能による権限の制限](https://dncware-blockchain-plus.github.io/samples/advanced/advanced15.html)
 
 # practicalサンプル一覧
 ### コイン参照コード [インタフェース定義](https://dncware-blockchain-plus.github.io/samples/practical/coin-spec.html)

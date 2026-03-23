@@ -2,7 +2,7 @@
 // トランザクション検証用のコントラクトを実装したライブラリ
 //
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
 // 他のファイルの内容をインポート
@@ -24,129 +24,114 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 // Uncomment this line to use console.log
 import "hardhat/console.sol";
 
-contract Verifier {
-
-    // このコントラクトのオーナー
-    address             owner;
-
-    // V ごとの peerscnf を記憶するマッピング
-    mapping(uint => Types.Peerscnf)   peerscnfs;
-
-
-    // コンストラクタ
-    constructor(address _owner) {
-        owner = _owner;
-    }
+library Verifier {
 
     // 指定された peerscnf を登録する関数
-    function setPeerscnf(Types.Peerscnf memory peerscnf) private {
+    function setPeerscnf(
+        mapping(uint => Types.PeerscnfForVerify) storage peerscnfsForVerify,
+        mapping(uint => Types.PeerscnfForUpdate) storage peerscnfsForUpdate,
+        Types.Peerscnf memory peerscnf
+    ) public {
         uint V = peerscnf.V;
-        peerscnfs[V].V = V;
-        peerscnfs[V].NF = peerscnf.NF;
-        peerscnfs[V].cnfstr = peerscnf.cnfstr;
-        peerscnfs[V].cnf = peerscnf.cnf;
-        peerscnfs[V].blkno = peerscnf.blkno;
-        peerscnfs[V].hash64 = peerscnf.hash64;
+
+        Types.PublicKeyData[] memory pubkeys = Pubkey.getPublicKeys(peerscnf.peers);
+
+        peerscnfsForVerify[V].V = V;
+        peerscnfsForVerify[V].NF = peerscnf.NF;
+        peerscnfsForVerify[V].hash64 = peerscnf.hash64;
+        for(uint peerNo = 0; peerNo < pubkeys.length; peerNo ++) {
+            peerscnfsForVerify[V].pubkeys.push(pubkeys[peerNo]);
+        }
+
+        peerscnfsForUpdate[V].cnfstr = peerscnf.cnfstr;
+        peerscnfsForUpdate[V].cnf = peerscnf.cnf;
+        peerscnfsForUpdate[V].blkno = peerscnf.blkno;
         for(uint peerNo = 0; peerNo < peerscnf.peers.length; peerNo ++) {
-            peerscnfs[V].peers.push(peerscnf.peers[peerNo]);
+            peerscnfsForUpdate[V].peers.push(peerscnf.peers[peerNo]);
         }
-        peerscnfs[V].pids = peerscnf.pids;
-        peerscnfs[V].authorities = peerscnf.authorities;        
-    }
-
-    // peerscnf のセットを追加する関数
-    function addPeerscnfs(Types.Peerscnf[] memory peerscnfArray) public {
-
-        require(tx.origin == owner, "Caller of the transaction is not the contract owner.");
-
-        for(uint peerscnfNo = 0; peerscnfNo < peerscnfArray.length; peerscnfNo ++) {
-            setPeerscnf(peerscnfArray[peerscnfNo]);
-        }
+        peerscnfsForUpdate[V].pids = peerscnf.pids;
+        peerscnfsForUpdate[V].authorities = peerscnf.authorities;
     }
 
     // トランザクションを検証する関数
     function verifyATransaction(
-        uint flags, // 通常は０を指定すること。いずれかの機能を無効化する場合は、当該ビットを１とすること。
+        mapping(uint => Types.PeerscnfForVerify) storage peerscnfsForVerify,
         Types.Transaction memory transaction, Types.TxArgs memory txArgs, bytes memory txHash, bytes[][] memory proof,
         uint blockNo, bytes memory blockHash, Types.BlockSPV memory blockSPV
     ) view public returns (bool) {
         bool result = true;
 
         // peerscnf を取得する
-        Types.Peerscnf memory peerscnf;
-        if(flags & 0x0020 == 0) {
-            peerscnf = peerscnfs[blockSPV.V];
-            require(peerscnf.V != 0, "peerscnf for blockSPV.V is not registered");
-        }
-
-        // ピアの配列から公開鍵を収集する
-        Types.PublicKeyData[] memory pubkeys;
-        if(flags & 0x0010 == 0) {
-            pubkeys = Pubkey.getPublicKeys(peerscnf.peers);
-        }
+        Types.PeerscnfForVerify memory peerscnfForVerify = peerscnfsForVerify[blockSPV.V];
+        require(peerscnfForVerify.V != 0, "peerscnf for blockSPV.V is not registered");
 
         // トランザクションのパラメータが一致することを確認する
-        if(flags & 0x0008 == 0) {
-            if(!TxArgs.compareArgs(transaction, txArgs)) {
-                console.log('Transaction and its arguments are inconsistent.');
-                result = false;
-            }
+        if(!TxArgs.compareArgs(transaction, txArgs)) {
+            console.log('Transaction and its arguments are inconsistent.');
+            result = false;
         }
 
         // トランザクションとそのハッシュが一致することを確認する
-        if(flags & 0x0004 == 0) {
-            bytes memory calculatedTxHash = TxHash.calculateTxHash(transaction);
-            if(!Primitives.compareBytes(calculatedTxHash, txHash)) {
-                console.log('Transaction and its hash are inconsistent.');
-                result = false;
-            }
+        bytes memory calculatedTxHash = TxHash.calculateTxHash(transaction);
+        if(!Primitives.compareBytes(calculatedTxHash, txHash)) {
+            console.log('Transaction and its hash are inconsistent.');
+            result = false;
         }
 
         // トランザクションのSPVを検証する
-        if(flags & 0x0002 == 0) {
-            bytes memory blockHashFromSPV = TxSPV.calcBlockHashFromTxSPV(proof, txHash);
-            if(!Primitives.compareBytes(blockHashFromSPV, blockHash)) {
-                console.log('Verification of the transaction SPV has failed.');
-                result = false;
-            }
+        bytes memory blockHashFromSPV = TxSPV.calcBlockHashFromTxSPV(proof, txHash);
+        if(!Primitives.compareBytes(blockHashFromSPV, blockHash)) {
+            console.log('Verification of the transaction SPV has failed.');
+            result = false;
         }
 
         // ブロックのSPVを検証する
-        if(flags & 0x0001 == 0) {
-            if(!BlockSPV.verifyBlockSPV(blockNo, blockHash, blockSPV, peerscnf, pubkeys)) {
-                console.log('Verification of the block SPV has failed.');
-                result = false;
-            }
+        if(!BlockSPV.verifyBlockSPV(blockNo, blockHash, blockSPV, peerscnfForVerify, peerscnfForVerify.pubkeys)) {
+            console.log('Verification of the block SPV has failed.');
+            result = false;
         }
 
         // 検証結果を返す。
         return result;
     }
 
+    // 指定されたVの peerscnf を取得する関数
+    function getPeerscnf(
+        mapping(uint => Types.PeerscnfForVerify) storage peerscnfsForVerify,
+        mapping(uint => Types.PeerscnfForUpdate) storage peerscnfsForUpdate,
+        uint V
+    ) public view returns (Types.Peerscnf memory) {
+        require(peerscnfsForVerify[V].V == V, "peerscnf for the specified V is not registered");
+        Types.Peerscnf memory peerscnf;
+        peerscnf.V = V;
+        peerscnf.NF = peerscnfsForVerify[V].NF;
+        peerscnf.cnfstr = peerscnfsForUpdate[V].cnfstr;
+        peerscnf.cnf = peerscnfsForUpdate[V].cnf;
+        peerscnf.blkno = peerscnfsForUpdate[V].blkno;
+        peerscnf.hash64 = peerscnfsForVerify[V].hash64;
+        peerscnf.peers = peerscnfsForUpdate[V].peers;
+        peerscnf.pids = peerscnfsForUpdate[V].pids;
+        peerscnf.authorities = peerscnfsForUpdate[V].authorities;
+        return peerscnf;
+    }
+
     // peerscnf の更新１個分を受け付ける関数
     function receiveAPeerscnfUpdate(
-        uint flags, // 通常は０を指定すること。いずれかの機能を無効化する場合は、当該ビットを１とすること。
+        mapping(uint => Types.PeerscnfForVerify) storage peerscnfsForVerify,
+        mapping(uint => Types.PeerscnfForUpdate) storage peerscnfsForUpdate,
         uint oldV, Types.Peerscnf memory newcnf, Types.SignatureData[] memory signatures
     ) public {
         
         // 更新前の peerscnf を取得する。
         // （登録済みでなかったらエラー）
-        Types.Peerscnf memory oldcnf;
-        if(flags & 0x0004 == 0) {
-            oldcnf = peerscnfs[oldV];
-            require(oldcnf.V == oldV, 'Old peerscnf is not present.');
-        }
+        Types.Peerscnf memory oldcnf = getPeerscnf(peerscnfsForVerify, peerscnfsForUpdate, oldV);
+        require(oldcnf.V == oldV, 'Old peerscnf is not present.');
 
         // peerscnf の更新を検証する。
-        bool verified = false;
-        if(flags & 0x0002 == 0) {
-            verified = Peerscnf.verifyAPeerscnfUpdate(oldcnf, newcnf, signatures);
-            require(verified, 'Given peerscnf update is invalid.');
-        }
+        bool verified = Peerscnf.verifyAPeerscnfUpdate(oldcnf, newcnf, signatures);
+        require(verified, 'Given peerscnf update is invalid.');
 
         // 更新後の peerscnf を登録する。
-        if(flags & 0x0001 == 0) {
-            setPeerscnf(newcnf);
-        }
+        setPeerscnf(peerscnfsForVerify, peerscnfsForUpdate, newcnf);
     }
 }

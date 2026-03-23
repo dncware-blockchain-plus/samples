@@ -1,14 +1,23 @@
-/* global nftId, owner, start, end */
+/* global nftId, owner, start, chunkSize */
 /* listNFT */
 
 /* 入力をチェックする */
 requireContract(nftId, 'invalid: nftId');
 requireString(owner, 'invalid: owner');
 requireNumber(start, 'invalid: start');
-requireNumber(end, 'invalid: end');
+requireNumber(chunkSize, 'invalid: chunkSize');
 
 /* NFTのコントラクトを開く */
-var nftContract = openContract(nftId, {delegation: true, catchable: true});
+var nftContract = openContract(nftId, {delegation: false, catchable: true});
+
+/* 指定されたオーナーが所有するトークンの総数を取得する。*/
+var numToken = nftContract.call({func: 'balanceOf', args: {owner: owner}});
+
+/* チャンクの終点を計算する。 */
+var end = start + chunkSize;
+if(end > numToken) {
+    end = numToken;
+}
 
 /* トークンのリストを空に初期化する。 */
 var tokens = [];
@@ -31,8 +40,15 @@ for(var index = start; index < end; index ++) {
     }
 }
 
-/*  トークンのリストを返す。 */
-return tokens;
+/* 次のチャンクの始点を計算する。（次のチャンクがない場合は undefined とする。）*/
+var nextStart = (end >= numToken) ? undefined : end;
+
+/* トークンのリストと、次のチャンクの始点と、トークンの総数を返す。 */
+return {
+    tokens: tokens,
+    nextStart: nextStart,
+    numToken: numToken
+};
 
 /* エラーチェック用の関数 */
 

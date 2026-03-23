@@ -8,10 +8,12 @@
         "dstAddress": "string"
     },
     "accessible_to": [
-        "admin@default"
+        "all"
     ],
     "callable_to": [
         "all"
     ],
-    "disclosed_to": []
+    "disclosed_to": [
+        "all"
+    ]
 }

@@ -7,11 +7,12 @@
         "tokenId": "string"
     },
     "accessible_to": [
-        "admin@default",
-        "sampleNFT@nft_transfer_01"
-    ],
-    "callable_to": [
         "all"
     ],
-    "disclosed_to": []
+    "callable_to": [
+        "sampleNFT@nft_transfer_01"
+    ],
+    "disclosed_to": [
+        "all"
+    ]
 }

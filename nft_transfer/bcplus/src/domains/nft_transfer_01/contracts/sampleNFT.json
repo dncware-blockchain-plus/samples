@@ -6,11 +6,12 @@
         "args": "any"
     },
     "accessible_to": [
-        "admin@default",
-        "nftSender@nft_transfer_01"
+        "all"
     ],
     "callable_to": [
         "all"
     ],
-    "disclosed_to": []
+    "disclosed_to": [
+        "all"
+    ]
 }

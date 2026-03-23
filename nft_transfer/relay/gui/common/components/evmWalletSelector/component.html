@@ -1,0 +1,20 @@
+<div class="component">
+
+    <!-- EVM用ウォレット -->
+    <label for="evm-wallet">EVM用ウォレット：</label>
+    <select id="evm-wallet" size="1" onChange="(thisComponent).onWalletChange()">
+        <option value="">-- ウォレットを選択してください --</option>
+        <!-- ここにEVMウォレットの一覧が追加されます。 -->
+    </select>
+
+    <!-- スペーサー -->
+    <div style="width: 5px"></div>
+
+    <!-- ウォレットアドレス（初期状態で非表示） -->
+    <div id="evm-wallet-address-container" display="flex" style="display:none;flex-direction:row;">
+        <label for="evm-wallet-address">ウォレットアドレス：</label>
+        <select id="evm-wallet-address" size="1" onChange="(thisComponent).onWalletAddressChange()">
+            <!-- ここにウォレットアドレスの一覧が追加されます。 -->
+        </select>
+    </div>
+</div>

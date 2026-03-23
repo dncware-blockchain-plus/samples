@@ -12,13 +12,12 @@
         "dstWalletAddr": "string"
     },
     "accessible_to": [
-        "admin@default",
-        "nftSender@nft_transfer_01"
-    ],
-    "callable_to": [
         "all"
     ],
+    "callable_to": [
+        "nftSender@nft_transfer_01"
+    ],
     "disclosed_to": [
-        "admin@default"
+        "all"
     ]
 }

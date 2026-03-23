@@ -1,0 +1,22 @@
+<!-- 接続設定の表示 -->
+<div class="component">
+
+    <!-- ウォレットアドレス -->
+    <label for="wallet-address">ウォレットアドレス：</label>
+    <input type="text" id="wallet-address" disabled value="" />
+
+    <!-- スペーサー -->
+    <div style="width: 5px"></div>
+
+    <!-- ウォレットアドレス -->
+    <div id="wallet-address-container" style="display: none">
+        <label for="wallet-address">ユーザ名：</label>
+        <input type="text" id="user-name" disabled value="" />
+    </div>
+
+    <!-- スペーサー -->
+    <div style="width: 5px"></div>
+
+    <!-- ウォレットへの接続を解除するボタン -->
+    <button id="disconnect-wallet-button" onclick="(thisComponent).onDisconnect()">ウォレットへの接続を解除</button>
+</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT転送予約 (BC+ → EVM)</title>
+    <link rel="stylesheet" href="transferUI.css" />
+
+    <!-- ※ 以下はどの script タグよりも前でなければならない -->
+    <script type="importmap">
+        {
+            "imports": {
+                "dncware-blockchain-api": "/sdk/bcplus/dncware-blockchain-browser-api.mjs",
+                "web3": "https://cdn.jsdelivr.net/npm/web3@4.16.0/+esm",
+                "qrcode": "https://cdn.jsdelivr.net/npm/qrcode@1.5.4/+esm"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- ここに画面ごとのdiv要素が挿入されます -->
+
+    <script type="module">
+
+        // 親ディレクトリの URL を取得する。
+        const parentURL = String(new URL('.', import.meta.url));
+
+        // ローカルストレージのキーのプレフィックスをセットする。
+        const { setLocalStoragePrefix } = await import(`${parentURL}../common/localStorage.mjs`);
+        setLocalStoragePrefix('nftSendBCPlusToEVM');
+
+        // 画面を登録する関数をインポートする。
+        const { registerScreen } = await import(`${parentURL}../../../../lib/screen/screenManager.mjs`);
+
+        // 画面を登録する。
+        await registerScreen(await import(`${parentURL}screens/main/screen.mjs`));
+        await registerScreen(await import(`${parentURL}screens/connect/screen.mjs`));
+        await registerScreen(await import(`${parentURL}screens/disconnect/screen.mjs`));
+
+        // 初期画面を表示する。
+        const initScreenModule = await import(`${parentURL}initScreen.mjs`);
+        initScreenModule.showInitialScreen();
+
+    </script>
+</body>
+
+</html>

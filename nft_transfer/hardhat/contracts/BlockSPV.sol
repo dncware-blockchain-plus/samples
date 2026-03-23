@@ -2,7 +2,7 @@
 // ブロックSPVの検証に関わる関数を実装したライブラリ
 //
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
 // 他のファイルの内容をインポート
@@ -162,7 +162,7 @@ library BlockSPV {
     // 当該ブロックが最新のピア構成の開始ブロック以降の場合に、ブロックのSPVを検証する関数
     function verifySPV2sigs(
         uint blockNo, bytes memory blockHash, Types.BlockSPV memory blockSPV,
-        Types.Peerscnf memory peerscnf, Types.PublicKeyData[] memory pubkeys
+        Types.PeerscnfForVerify memory peerscnfForVerify, Types.PublicKeyData[] memory pubkeys
     ) private view returns (bool) {
 
         // SPVの内容を取り出す。
@@ -171,7 +171,7 @@ library BlockSPV {
         uint                      V = blockSPV.V;
 
         // ピア構成の番号と、署名の数を確認
-        if((peerscnf.V != V) || (sigs.length < peerscnf.NF)) {
+        if((peerscnfForVerify.V != V) || (sigs.length < peerscnfForVerify.NF)) {
             return false;
         }
 
@@ -195,7 +195,7 @@ library BlockSPV {
     }
 
     // 当該ブロックが最新のピア構成の開始ブロックより前の場合に、ブロックのSPVを検証する関数
-    function verifySPV2chain(uint blockNo, bytes memory blockHash, Types.BlockSPV memory blockSPV, Types.Peerscnf memory peerscnf) private pure returns (bool) {
+    function verifySPV2chain(uint blockNo, bytes memory blockHash, Types.BlockSPV memory blockSPV, Types.PeerscnfForVerify memory peerscnfForVerify) private pure returns (bool) {
         bytes[] memory q;
 
         // SPVの内容を取り出す。
@@ -235,7 +235,7 @@ library BlockSPV {
             q[(uint)(pos)] = h;
             h = Utils.calcSHA256ForConcatenated(q);
         }
-        bytes memory hash = Primitives.decodeBase64(peerscnf.hash64);
+        bytes memory hash = Primitives.decodeBase64(peerscnfForVerify.hash64);
         if(!Primitives.compareBytes(h, hash)) {
             console.log("Block proof is inconsitent with the hash in peerscnf.");
             return false;
@@ -246,17 +246,17 @@ library BlockSPV {
     // ブロックSPVを検証する関数
     function verifyBlockSPV(
         uint blockNo, bytes memory blockHash, Types.BlockSPV memory blockSPV,
-        Types.Peerscnf memory peerscnf, Types.PublicKeyData[] memory pubkeys
+        Types.PeerscnfForVerify memory peerscnfForVerify, Types.PublicKeyData[] memory pubkeys
     ) view public returns (bool) {
 
         // peerscnf が最新のピア構成を反映していることを確認する。
-        require(blockSPV.V <= peerscnf.V, "verifyBlockSPV(): blockSPV is newer than peerscnf");
+        require(blockSPV.V <= peerscnfForVerify.V, "verifyBlockSPV(): blockSPV is newer than peerscnf");
 
         // 当該ブロックが最新のピア構成の開始ブロック以降の場合と、そうでない場合で分岐。
-        if((blockSPV.sigs.length > 0) && (blockSPV.rootinfo.length > 0) && (blockSPV.V == peerscnf.V)) {
-            return verifySPV2sigs(blockNo, blockHash,  blockSPV, peerscnf, pubkeys);
+        if((blockSPV.sigs.length > 0) && (blockSPV.rootinfo.length > 0) && (blockSPV.V == peerscnfForVerify.V)) {
+            return verifySPV2sigs(blockNo, blockHash,  blockSPV, peerscnfForVerify, pubkeys);
         } else if((blockSPV.blkinfo.length > 0) && (blockSPV.blkproof.length > 0)) {
-            return verifySPV2chain(blockNo, blockHash, blockSPV, peerscnf);
+            return verifySPV2chain(blockNo, blockHash, blockSPV, peerscnfForVerify);
         } else {
             revert("verifyBlockSPV(): Block SPV is invalid");
         }

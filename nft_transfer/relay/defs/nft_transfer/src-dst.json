@@ -1,0 +1,8 @@
+[
+    {
+        "srcChainInfoId": "BC+",
+        "srcNFTId": "sampleNFT@nft_transfer_01",
+        "dstChainInfoId": "hardhat",
+        "dstNFTAddr": "0xddC4Df18E765BCC51BC165FeE3E55cE69C8C9C58"
+    }
+]

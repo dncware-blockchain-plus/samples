@@ -1,0 +1,112 @@
+/* ボディのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e0f0ff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 画面のスタイル */
+.screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* テーブルコンテナのスタイル */
+.table-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 200px;
+}
+
+/* テーブルのスタイル */
+table {
+    margin: 0px;
+    width: 100%;
+    padding: 0px;
+    border-collapse: collapse;
+}
+thead {
+    margin: 0px;
+}
+tbody {
+    margin: 0px;
+}
+th, td {
+    padding: 0;
+    border-color: #808080;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 13px;
+}
+th {
+    background-color: #f0f0f0;
+    color: #404040;
+    position: sticky;
+    top: 0;
+}
+td {
+    background-color: #ffffff;
+}
+
+/* UIコンポーネントのスタイル */
+.component {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: left;
+    padding: 5px;
+}
+
+/* トークンの状態に応じたスタイル */
+.token_alive_unselected {
+    background-color: #ffffff;
+    color: #202020;
+}
+.token_alive_selected {
+    background-color: #8080ff;
+    color: #ffffff;
+}
+.token_cmdPending_unselected {
+    background-color: #ffffff;
+    color: #0000ff;
+}
+.token_cmdPending_selected {
+    background-color: #8080ff;
+    color: #0000ff;
+}
+.token_reserved_unselected {
+    background-color: #ffffff;
+    color: #ff0000;
+}
+.token_reserved_selected {
+    background-color: #ff8080;
+    color: #ff0000;
+}
+.token_receptionPending_unselected {
+    background-color: #ffffff;
+    color: #ff00ff;
+}
+.token_receptionPending_selected {
+    background-color: #ff80ff;
+    color: #ff00ff;
+}
+.token_failed_unselected {
+    background-color: #ffc0c0;
+    color: #ffffff;
+}
+.token_failed_selected {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.token_transfered_unselected {
+    background-color: #ffffff;
+    color: #c0c0c0;
+}
+.token_transfered_selected {
+    background-color: #ffffff;
+    color: #c0c0c0;
+}

@@ -25,10 +25,16 @@ console.log(['byNFTPair', srcChainInfoId, nftId, dstChainInfoId]);
 var dstChainRecord = chainStore.get(['chain', dstChainInfoId]);
 require((dstChainRecord !== undefined) && (dstChainRecord !== null), 'unknown chainInfoId: ' + dstChainInfoId);
 
+// 転送先のNFTコントラクトをdelegation有り・無しで開く
+var srcNFTContract = openContract(nftId);
+var srcNFTContractDelegated = openContract(nftId, {delegation: true});
+
 /* 転送元NFTからトークンURIと所有者のIDを取得する */
-var srcNFTContract = openContract(nftId, {delegation: true});
 var tokenURI = srcNFTContract.call({func: 'tokenURI', args: {tokenId: tokenId}});
 var tokenOwner = srcNFTContract.call({func: 'ownerOf', args: {tokenId: tokenId}});
+
+/* 転送元のトークンをいったん、このコントラクトに転送する */
+srcNFTContractDelegated.call({func: 'transferFrom', args: {from: tokenOwner, to: getContractId(), tokenId: tokenId}});
 
 /* 転送元のトークンを burn する */
 srcNFTContract.call({func: 'burn', args: {tokenId: tokenId}});

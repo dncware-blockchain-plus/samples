@@ -17,7 +17,7 @@
         "urls": [
             "http://localhost:8545/"
         ],
-        "nftReceiver": "0x0E75410fBf27A70fF6ebdF9140A3B19d3227CcaF",
+        "nftReceiver": "0xfE6bC9e58fB9ED2fCAFC9425F038c1CeF465d867",
         "nativeCurrency": "HHT"
     }
 ]

@@ -2,7 +2,7 @@
 // ユーティリティ関数を実装したライブラリ
 //
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
 // 他のファイルの内容をインポート

@@ -4,7 +4,7 @@
 'use strict';
 var NFT_NAME = 'mintable NFT implementation';
 var NFT_SYMBOL = 'NFTM';
-var ADMIN_USER = 'u0000'; // can mint/burn
+var ADMIN_USER = getIdByAliasName('nftManager'); // can mint/burn
 var LOG_CONTRACT = 'NFTLOG';
 
 var caller = getCallerId();

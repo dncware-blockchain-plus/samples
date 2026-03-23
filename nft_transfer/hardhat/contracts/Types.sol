@@ -2,11 +2,18 @@
 // 型定義をまとめたライブラリ
 //
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
 
 library Types {
+
+    // 公開鍵のデータ
+    struct PublicKeyData {
+        string          peerId;
+        bytes[2]        keys;
+    }
+
 
     // ピア
     struct Peer {
@@ -47,6 +54,24 @@ library Types {
         string []       authorities;
     }
 
+    // peerscnf のうち、メッセージ検証に必要な部分
+    struct PeerscnfForVerify {
+        uint            V;
+        uint            NF;
+        string          hash64;
+        PublicKeyData[] pubkeys;
+    }
+
+    // peerscnf のうち、peerscnf の更新のみに必要な部分
+    struct PeerscnfForUpdate {
+        string          cnfstr;
+        Cnf             cnf;
+        uint            blkno;
+        Peer[]          peers;          // マッピングを Javascript から渡すことができないので配列として実装
+        string []       pids;
+        string []       authorities;
+    }
+
     // トランザクション
     struct Transaction {
         uint            blkno;
@@ -64,7 +89,6 @@ library Types {
         uint            steps;
         string[]        disclosed_to;
         string[]        related_to;
-        string[]        cur_disclosed_to;
         bytes           pack;
     }
 
@@ -108,16 +132,17 @@ library Types {
     }
 
 
-    // 公開鍵のデータ
-    struct PublicKeyData {
-        string          peerId;
-        bytes[2]        keys;
-    }
-
-
     // 署名１個
     struct SignatureData {
         string          peerId;
         bytes           signature;
+    }
+
+
+    // トークンの転送元の情報
+    struct TokenOrigin {
+        string          srcChainInfoId;  // 転送元のチェーン情報ID
+        string          srcNFTId;        // 転送元のNFT ID
+        string          orgTokenId;      // 転送元のトークンID
     }
 }
